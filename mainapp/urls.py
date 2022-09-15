@@ -7,10 +7,10 @@ from mainapp.apps import MainappConfig
 app_name = MainappConfig.name
 
 urlpatterns = [
-    path("", views.MainPageView.as_view(), name="index"),
+    path("", views.MainPageView.as_view(), name="main_page"),
     path("news/", views.NewsPageView.as_view(), name="news"),
     path("news/<int:pk>/", views.NewsPageDetailView.as_view(), name="news_detail"),
-    path("courses_list/", views.CoursesListPageView.as_view(), name="courses_list"),
+    path("courses_list/", views.CoursesListPageView.as_view(), name="courses"),
 
     path("courses_list/<int:pk>/", views.CoursesDetailView.as_view(), name="courses_detail",),
 
