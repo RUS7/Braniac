@@ -200,6 +200,7 @@ cython_debug/
 # .idea/modules
 # *.iml
 # *.ipr
+*.env
 
 # CMake
 cmake-build-*/

@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-txh)wo0smd5-b0-qc6k!x5y*nx^s)q$!wl!xx)^6t3ul)%+gq="
+load_dotenv()
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     "social_django",
     "mainapp",
     "authapp",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -155,10 +159,14 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
 )
 
-SOCIAL_AUTH_GITHUB_KEY = "091d5ed1274b15b2b4b4"
-SOCIAL_AUTH_GITHUB_SECRET = "820bd421dee0cd3591d918de024676134d7f68fa"
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = "7Pnu2vDJ9zft7D5v9PRe"
-SOCIAL_AUTH_VK_OAUTH2_SECRET = "242db33a242db33a242db33a68273d06c12242d242db33a470f094983d8958a6725a52a"
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ["SOCIAL_AUTH_GITHUB_KEY"]
+SOCIAL_AUTH_GITHUB_SECRET = os.environ["SOCIAL_AUTH_GITHUB_SECRET"]
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ["SOCIAL_AUTH_VK_OAUTH2_KEY"]
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ["SOCIAL_AUTH_VK_OAUTH2_SECRET"]
 
 SOCIAL_AUTH_VK_OAUTH2_SCORE = ['notify', 'friends', 'email']
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
