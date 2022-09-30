@@ -7,7 +7,6 @@
 import datetime
 import os
 from pathlib import Path
-
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,9 +20,11 @@ load_dotenv()
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.getenv("DEBUG") == 'True' else False
 
 ALLOWED_HOSTS = ["*"]
+
+ENV_TYPE = os.getenv('ENV_TYPE', 'prod')
 
 # Application definition
 
@@ -93,11 +94,11 @@ if ENV_TYPE == 'local':
         }
     }
 else:
-     DATABASES = {
-         "default": {
+    DATABASES = {
+        "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": "lms",
-             "USER": "postgres"
+            "USER": "postgres"
         }
      }
 
@@ -135,8 +136,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = "/static/"
-
+STATIC_URL = "static/"
+if ENV_TYPE == "local":
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static',
+    ]
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
