@@ -90,12 +90,21 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if ENV_TYPE == 'local':
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+     DATABASES = {
+         "default": {
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": "lms",
+             "USER": "postgres"
+        }
+     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -242,3 +251,5 @@ EMAIL_FILE_PATH = "var/email-messages/"
 LOCALE_PATHS = [BASE_DIR / "locale"]
 
 SELENIUM_DRIVER_PATH_FF = BASE_DIR / "var" / "selenium" / "geckodriver"
+
+
