@@ -4,6 +4,8 @@
 #https://docs.djangoproject.com/en/3.2/topics/settings/
 #For the full list of settings and their values, see
 #https://docs.djangoproject.com/en/3.2/ref/settings/
+
+
 import datetime
 import os
 from pathlib import Path
@@ -172,8 +174,8 @@ AUTHENTICATION_BACKENDS = (
     "axes.backends.AxesStandaloneBackend",
 )
 
-SOCIAL_AUTH_GITHUB_KEY = os.environ["SOCIAL_AUTH_GITHUB_KEY"]
-SOCIAL_AUTH_GITHUB_SECRET = os.environ["SOCIAL_AUTH_GITHUB_SECRET"]
+SOCIAL_AUTH_GITHUB_KEY = os.getenv("SOCIAL_AUTH_GITHUB_KEY")
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv("SOCIAL_AUTH_GITHUB_SECRET")
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ["SOCIAL_AUTH_VK_OAUTH2_KEY"]
 SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ["SOCIAL_AUTH_VK_OAUTH2_SECRET"]
