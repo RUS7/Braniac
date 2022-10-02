@@ -3,7 +3,7 @@ from http import HTTPStatus
 from unittest import mock
 
 from authapp import models as authapp_models
-from django.conf import settings
+from django.conf import settingsa
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core import mail as django_mail
 from django.test import Client, TestCase
